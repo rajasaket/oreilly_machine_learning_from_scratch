@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-
+import matplotlib.pyplot as plt
 
 class Point:
     def __init__(self, x, y):
@@ -10,8 +10,8 @@ class Point:
     def __str__(self):
         return "{0},{1}".format(self.x, self.y)
 
-
-points = [(Point(row.x, row.y)) for index, row in pd.read_csv("https://bit.ly/2KF29Bd").iterrows()]
+df=pd.read_csv("https://bit.ly/2KF29Bd")
+points = [(Point(row.x, row.y)) for index, row in df.iterrows()]
 
 # Building the model
 m = 0.0
@@ -45,5 +45,9 @@ for i in range(epochs):
     else:
         m -= m_adjust
         b -= b_adjust
-
+    
 print("y = {0}x + {1}".format(m, b))
+
+plt.scatter(df.x,df.y)
+plt.plot(df.x,(m * df.x + b))
+plt.show()
