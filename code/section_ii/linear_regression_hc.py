@@ -47,7 +47,8 @@ for i in range(epochs):
         b -= b_adjust
     
 print("y = {0}x + {1}".format(m, b))
-
+plt.xlabel("x")
+plt.ylabel("y")
 plt.scatter(df.x,df.y)
 plt.plot(df.x,(m * df.x + b))
 plt.show()
